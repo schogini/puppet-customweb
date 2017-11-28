@@ -1,10 +1,9 @@
-# A Recipe to Create a Custom Website in Puppet
+# A Module to Create a Custom Website in Puppet
 Puppet-Docker CustomWeb
 ```
-mkdir customweb
-# Copy the custom website to the above folder
+git clone https://github.com/schogini/puppet-customweb.git mylocalfolder
 docker network create puppet
-docker run -ti --rm --net puppet --name puppet  -p :8090:80 --hostname puppet -v $PWD/customweb:/customweb schogini/docker-puppetserver-ubuntu
+docker run -ti --rm --net puppet --name puppet  -p :8090:80 --hostname puppet -v $PWD/mylocalfolder/customweb:/etc/puppetlabs/code/environments/production/modules/customweb schogini/docker-puppetserver-ubuntu
 docker run -ti --rm --net puppet --name puppetnode1 -p :8091:80 --hostname puppetnode1 schogini/docker-puppetnode-ubuntu
 ```
 ##SERVER
@@ -17,11 +16,6 @@ puppet agent -t
 ```
 puppet cert list
 puppet cert sign puppetnode1
-cd /etc/puppetlabs/code/environments/production/modules/
-puppet module generate --skip-interview sree-simpleweb
-cp /customweb/manifests/init.pp ./customweb/manifests/init.pp
-cp -r /customweb/templates ./customweb/
-cp -r /customweb/files ./customweb/
 puppet apply -e "include customweb"
 curl localhost
 ```
