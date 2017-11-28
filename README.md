@@ -41,3 +41,11 @@ puppet agent -t
 curl localhost
 ```
 BROWSE: http://0.0.0.0:8091/
+
+NOTES:
+1. If you get an error like this "Error: invalid byte sequence in US-ASCII" then, do this in your puppetnode1 container
+```
+nano ~/.bashrc 
+Add this line at the bottom of the file: 
+export LC_ALL="en_US.UTF-8"
+```
