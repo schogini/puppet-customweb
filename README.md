@@ -7,9 +7,11 @@ docker run -ti --rm --network puppet --name puppet -p 8090:80 --hostname puppet 
 docker run -ti --rm --net puppet --name puppetnode1 -p :8091:80 --hostname puppetnode1 schogini/docker-puppetnode-ubuntu
 ```
 ##SERVER
+
 service puppetserver start
 
 ##CLIENT
+
 puppet agent -t
 
 ##SERVER 
@@ -19,7 +21,7 @@ puppet cert sign puppetnode1
 puppet apply -e "include customweb"
 curl localhost
 ```
-BROWSER: http://0.0.0.0:8090/
+BROWSE: http://0.0.0.0:8090/
 
 ##SERVER
 nano ../manifests/site.pp
@@ -35,4 +37,4 @@ node 'puppet' {
 ##CLIENT
 puppet agent -t
 curl localhost
-BROWSER: http://0.0.0.0:8091/
+BROWSE: http://0.0.0.0:8091/
