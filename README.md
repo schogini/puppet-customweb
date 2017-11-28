@@ -3,7 +3,7 @@ Puppet-Docker CustomWeb
 ```
 git clone https://github.com/schogini/puppet-customweb.git mylocalfolder
 docker network create puppet
-docker run -ti --rm --net puppet --name puppet  -p :8090:80 --hostname puppet -v $PWD/mylocalfolder/customweb:/etc/puppetlabs/code/environments/production/modules/customweb schogini/docker-puppetserver-ubuntu
+docker run -ti --rm --network puppet --name puppet -p 8090:80 --hostname puppet -v $PWD/mylocalfolder/customweb:/etc/puppetlabs/code/environments/production/modules/customweb schogini/docker-puppetserver-ubuntu
 docker run -ti --rm --net puppet --name puppetnode1 -p :8091:80 --hostname puppetnode1 schogini/docker-puppetnode-ubuntu
 ```
 ##SERVER
